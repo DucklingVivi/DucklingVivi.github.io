@@ -22,13 +22,8 @@ async function startCapture(displayMediaOptions) {
 
 function start(){
     startCapture(displayMediaOptions).then((stream) => {
-
+        document.body.innerHTML = "<video id='video' autoplay></video>";
         videoObj = document.getElementById("video");
-        
-        //unhide video 
-
-        videoObj.style.display = "block";
-
         videoObj.srcObject = stream;
     });
 }

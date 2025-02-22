@@ -13,7 +13,7 @@ async function startCapture(displayMediaOptions) {
     console.log(adapter)
     try {
       captureStream =
-        await adapter.browserShim.shimGetDisplayMedia(displayMediaOptions);
+        await adapter.browserShim.shimGetDisplayMedia(window,displayMediaOptions);
     } catch (err) {
       console.error(`Error: ${err}`);
     }

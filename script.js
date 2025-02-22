@@ -1,4 +1,4 @@
-adapter = import('./adapter-latest.js');
+adapter = import('./adapter.js');
 
 
 
@@ -13,17 +13,20 @@ async function startCapture(displayMediaOptions) {
     console.log(adapter)
     try {
       captureStream =
-        await adapter.browserShim.shimGetDisplayMedia(window,displayMediaOptions);
+        await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
     } catch (err) {
       console.error(`Error: ${err}`);
     }
+    console.log(captureStream)
     return captureStream;
   }
 
 function start(){
     startCapture(displayMediaOptions).then((stream) => {
-        document.body.innerHTML = "<video id='video' autoplay></video>";
+
+        document.body.innerHTML = "<video id='video'></video>";
         videoObj = document.getElementById("video");
+        videoObj.autoplay = true;
         videoObj.srcObject = stream;
     });
 }
